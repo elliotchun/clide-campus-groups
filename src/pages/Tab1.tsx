@@ -1,25 +1,25 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { IonContent, IonHeader, IonPage, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
+import { searchOutline } from 'ionicons/icons';
 import './Tab1.css';
 
 const Tab1: React.FC = () => {
-  return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Tab 1</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 1</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 1 page" />
-      </IonContent>
-    </IonPage>
-  );
+    return (
+        <IonPage>
+            <IonHeader>
+                <IonToolbar>
+                    <IonTitle>Welcome!</IonTitle>
+                </IonToolbar>
+                <IonToolbar>
+                    <IonSearchbar searchIcon={searchOutline} animated={true}></IonSearchbar>
+                </IonToolbar>
+            </IonHeader>
+            <IonContent fullscreen>
+                <h1>Explore New Clubs</h1>
+                <h1>Upcoming Events</h1>
+                <h2>Athletic</h2>
+            </IonContent>
+        </IonPage >
+    );
 };
 
 export default Tab1;
