@@ -1,0 +1,7 @@
+{
+  "name": "clide-campus-groups",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
