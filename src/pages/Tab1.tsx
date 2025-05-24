@@ -1,6 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
 import { searchOutline } from 'ionicons/icons';
 import './Tab1.css';
+import ClubThumbnail from '../components/ClubThumbnail';
 
 const Tab1: React.FC = () => {
     return (
@@ -15,6 +16,7 @@ const Tab1: React.FC = () => {
             </IonHeader>
             <IonContent fullscreen>
                 <h1>Explore New Clubs</h1>
+                <ClubThumbnail name={"Drippy"}></ClubThumbnail>
                 <h1>Upcoming Events</h1>
                 <h2>Athletic</h2>
             </IonContent>

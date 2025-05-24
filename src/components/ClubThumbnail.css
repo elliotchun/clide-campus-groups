@@ -1,0 +1,21 @@
+.club-thumbnail {
+    width: 150px;
+    height: 150px;
+    background-color: black;
+}
+
+img {
+    position: absolute;
+}
+
+p {
+    margin: 0;
+    padding: 4px;
+    position: relative;
+    right: 0px;
+    color: white;
+    width: fit-content;
+    background-color: black;
+    border-radius: 50px;
+    border: 1px solid white;
+}
