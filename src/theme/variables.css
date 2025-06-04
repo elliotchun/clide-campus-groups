@@ -18,10 +18,9 @@ ion-tab-bar {
 
     width: 285px;
     height: 54px;
-    border-radius: 40px;
-    border: 1px solid black;
+    border-radius: 20px;
 
-    --background: #fecc07;
-    --color: black;
-    --color-selected: gray;
+    --background: #255799;
+    --color: white;
+    --color-selected: #fecc07;
 }

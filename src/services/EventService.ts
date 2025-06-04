@@ -254,6 +254,8 @@ export const Events: Event[] = [
     },
 ];
 
+export const FavoriteEvents = [];
+
 // Use Intl.DateTimeFormat for locale-aware formatting
 export const eventDateTimeToString = (date: Date) => date.toLocaleString(undefined, {
     year: 'numeric',

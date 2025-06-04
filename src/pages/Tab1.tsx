@@ -1,6 +1,5 @@
 import {
-    IonContent, IonHeader, IonPage, IonSearchbar, IonTitle, IonToolbar, IonList, IonInfiniteScroll, IonInfiniteScrollContent, IonIcon,
-    IonButtons, IonButton
+    IonContent, IonHeader, IonPage, IonSearchbar, IonTitle, IonToolbar, IonList, IonInfiniteScroll, IonInfiniteScrollContent, IonIcon, IonButton, IonItem
 } from '@ionic/react';
 import { funnelOutline, searchOutline } from 'ionicons/icons';
 import './Tab1.css';
@@ -57,7 +56,9 @@ const Tab1: React.FC = () => {
                 <div>
                     <IonList class="club-list" role="feed">
                         {events.map((event, index) => (
-                            <EventThumbnail key={index} {...event}></EventThumbnail>
+                            <IonItem key={index}>
+                                <EventThumbnail {...event}></EventThumbnail>
+                            </IonItem>
                         ))}
                     </IonList>
                     <IonInfiniteScroll
