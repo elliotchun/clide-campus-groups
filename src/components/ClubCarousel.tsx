@@ -4,8 +4,8 @@ import "./ClubCarousel.css"
 
 export const ClubCarousel = () => (
     <div className="club-carousel">
-        {Clubs.map(item => (
-            <ClubThumbnail {...item} />
+        {Clubs.map((item, index) => (
+            <ClubThumbnail key={index} {...item} />
         ))}
     </div>
 )

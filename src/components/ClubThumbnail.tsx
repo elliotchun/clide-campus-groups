@@ -1,3 +1,4 @@
+import { IonCard, IonImg } from '@ionic/react';
 import './ClubThumbnail.css';
 
 interface ClubThumbnailProps {
@@ -5,10 +6,10 @@ interface ClubThumbnailProps {
 }
 
 const ClubThumbnail: React.FC<ClubThumbnailProps> = ({ name }) => (
-    <div className="club-thumbnail">
-        <img src="Drippy.png" />
-        <p>{name}</p>
-    </div>
+    <IonCard className="club-thumbnail">
+        <IonImg className="club-thumbnail-img" src="Drippy.png" alt={name} />
+        <p className="club-thumbnail-name">{name}</p>
+    </IonCard>
 );
 
 export default ClubThumbnail;

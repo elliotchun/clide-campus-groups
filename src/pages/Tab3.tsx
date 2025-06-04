@@ -1,7 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import EventThumbnail from '../components/EventThumbnail';
 import './Tab3.css';
+import Events from '../services/EventService';
 
 const Tab3: React.FC = () => {
     return (
@@ -12,7 +12,7 @@ const Tab3: React.FC = () => {
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>
-                <EventThumbnail name={"Drippy"} description={"Another fine drip squad product!"}></EventThumbnail>
+                <EventThumbnail {...Events[0]}></EventThumbnail>
             </IonContent>
         </IonPage>
     );

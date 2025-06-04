@@ -1,18 +1,21 @@
 .club-thumbnail {
     width: 150px;
+    height: 200px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 
-.club-thumbnail>img {
+.club-thumbnail-img {
     height: 150px;
     width: 100%;
     object-fit: cover;
     background-color: black;
 }
 
-.club-thumbnail>p {
+.club-thumbnail-name {
     text-align: center;
     max-width: 100%;
     word-break: break-word;

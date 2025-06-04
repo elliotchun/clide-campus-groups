@@ -1,23 +1,28 @@
-import { IonIcon } from '@ionic/react';
+import { IonCard, IonImg, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonIcon, IonItem } from '@ionic/react';
 import './EventThumbnail.css';
 import { starOutline } from 'ionicons/icons';
+import { eventDateTimeToString, type Event } from '../services/EventService';
 
-interface EventThumbnailProps {
-    name: string
-    description: string
-}
 
-const EventThumbnail: React.FC<EventThumbnailProps> = ({ name, description }) => {
-    return (
-        <div className="event-thumbnail">
-            <img src="Drippy.png" />
+const EventThumbnail: React.FC<Event> = (event: Event) => (
+    <IonCard className="event-thumbnail" role="article">
+        <div className="event-thumbnail-horizontal">
+            <IonImg src="Drippy.png" alt={event.name} className="event-thumbnail-image" />
             <div>
-                <p>{name}</p>
-                <p>{description}</p>
+                <IonCardHeader>
+                    <IonCardTitle>{event.name}</IonCardTitle>
+                </IonCardHeader>
+                <IonCardContent>
+                    <IonText color="medium">
+                        <p>{event.description}</p>
+                        <p>{event.location}</p>
+                        <p>{eventDateTimeToString(event.eventDateTime)}</p>
+                    </IonText>
+                </IonCardContent>
+                <IonIcon icon={starOutline} className="event-favorite" />
             </div>
-            <IonIcon icon={starOutline} className="event-favorite"></IonIcon>
         </div>
-    );
-};
+    </IonCard>
+);
 
 export default EventThumbnail;

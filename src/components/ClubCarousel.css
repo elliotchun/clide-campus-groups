@@ -5,13 +5,10 @@
     white-space: nowrap;
     padding: 8px;
     gap: 12px;
-    /* Optional: smooth scroll */
     scroll-behavior: smooth;
 }
 
 .club-carousel>* {
     min-width: 160px;
-    /* Adjust as needed */
     flex: 0 0 auto;
-    /* Prevent from shrinking or stretching */
 }
