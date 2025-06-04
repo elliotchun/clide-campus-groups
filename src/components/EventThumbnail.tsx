@@ -1,13 +1,12 @@
 import { IonCard, IonImg, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonIcon, IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonContent, IonButton } from '@ionic/react';
 import './EventThumbnail.css';
-import { starOutline, star } from 'ionicons/icons';
+import { starOutline, star, locationOutline, alarmOutline } from 'ionicons/icons';
 import { eventDateTimeToString, type Event } from '../services/EventService';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const EventThumbnail: React.FC<Event> = (event: Event) => {
-    const modal = useRef<HTMLIonModalElement>(null);
-    const [selectedEvent, setSelectedEvent] = useState<any>(null);
+    const [selectedEvent, setSelectedEvent] = useState(null);
     const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
@@ -35,7 +34,7 @@ const EventThumbnail: React.FC<Event> = (event: Event) => {
     };
 
 
-    const openEvent = (event) => {
+    const openEvent = () => {
         setSelectedEvent(event);
     };
 
@@ -50,36 +49,38 @@ const EventThumbnail: React.FC<Event> = (event: Event) => {
     return (
         <IonCard className="event-thumbnail" role="article" >
             <div className="event-thumbnail-horizontal">
-                <IonImg src="Drippy.png" alt={event.name} className="event-thumbnail-image" onClick={_ => openEvent(event)} />
-                <div onClick={_ => openEvent(event)}>
+                <IonImg src="Drippy.png" alt={event.name} className="event-thumbnail-image" onClick={_ => openEvent()} />
+                <div onClick={_ => openEvent()}>
                     <IonCardHeader>
                         <IonCardTitle>{event.name}</IonCardTitle>
                     </IonCardHeader>
                     <IonCardContent>
                         <IonText color="medium">
                             <p>{event.description}</p>
-                            <p>{event.location}</p>
-                            <p>{eventDateTimeToString(event.eventDateTime)}</p>
+                            <p><IonIcon icon={alarmOutline} /> {eventDateTimeToString(event.eventDateTime)}</p>
+                            <p><IonIcon icon={locationOutline} /> {event.location}</p>
                         </IonText>
                     </IonCardContent>
                 </div>
-                <IonIcon icon={getStarIconStyle()} className="event-favorite" onClick={_ => addFavorite(event)} />
+                <IonIcon icon={getStarIconStyle()} className="event-favorite" onClick={_ => addFavorite()} />
             </div>
-            <IonModal ref={modal} isOpen={selectedEvent !== null} initialBreakpoint={0.25} breakpoints={[0, 0.25, 1]}
+            <IonModal isOpen={selectedEvent !== null} initialBreakpoint={0.25} breakpoints={[0, 0.25, 0.5, 1]}
                 onWillDismiss={_ => closeEvent()}>
                 <IonHeader>
                     <IonToolbar>
                         <IonTitle>Event Details</IonTitle>
                         <IonButtons slot="end">
-                            <IonButton onClick={() => setSelectedEvent(null)}>Close</IonButton>
+                            <IonButton onClick={_ => closeEvent()}>Close</IonButton>
                         </IonButtons>
                     </IonToolbar>
                 </IonHeader>
-                <IonContent>
+                <IonContent className="ion-padding">
                     {selectedEvent && (
                         <>
                             <h1>{selectedEvent.name}</h1>
                             <p>{selectedEvent.description}</p>
+                            <p><IonIcon icon={alarmOutline} /> {eventDateTimeToString(event.eventDateTime)}</p>
+                            <p><IonIcon icon={locationOutline} /> {selectedEvent.location}</p>
                         </>
                     )}
                 </IonContent>

@@ -1,6 +1,11 @@
 /* For information on how to create your own theme, please see:
 http://ionicframework.com/docs/theming/ */
 
+:root {
+    --ion-toolbar-color: white;
+    --ion-margin: 24px;
+}
+
 ion-toolbar {
     --color: white;
     --background: #255799;

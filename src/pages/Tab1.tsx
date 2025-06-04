@@ -1,5 +1,6 @@
 import {
-    IonContent, IonHeader, IonPage, IonSearchbar, IonTitle, IonToolbar, IonList, IonInfiniteScroll, IonInfiniteScrollContent, IonIcon, IonButton, IonItem
+    IonContent, IonHeader, IonPage, IonSearchbar, IonTitle, IonToolbar, IonList, IonInfiniteScroll, IonInfiniteScrollContent, IonIcon, IonButton, IonItem,
+    IonFooter
 } from '@ionic/react';
 import { funnelOutline, searchOutline } from 'ionicons/icons';
 import './Tab1.css';
@@ -10,7 +11,7 @@ import Events from '../services/EventService';
 
 const PAGE_SIZE = 10;
 
-const allEvents = Events;
+const allEvents = Events.toSorted((a, b) => a.eventDateTime.getTime() - b.eventDateTime.getTime());
 
 const Tab1: React.FC = () => {
     const [events, setEvents] = useState([]);
@@ -73,7 +74,8 @@ const Tab1: React.FC = () => {
                     </IonInfiniteScroll>
                 </div>
             </IonContent>
-        </IonPage >
+            <IonFooter></IonFooter>
+        </IonPage>
     );
 };
 

@@ -1,6 +1,7 @@
 import { Category } from "./EventCategory";
 import { ACMClub, AIClub, ArtsCollective, AstronomyClub, BasketballClub, BoardGamesClub, ClimbingClub, CookingClub, EnvironmentalClub, FilmSociety, GardeningClub, HikingClub, HousingCouncil, ImprovClub, InternationalClub, LiteratureSociety, MathClub, OutdoorAdventureClub, PaintingClub, PhotoClub, PreMedSociety, RunningClub, SocialClub, StudentLifeOffice, StudentUnion, TabletopClub, TennisClub, TriviaClub, YogaClub, type Club } from "./ClubService"
 
+
 export interface Event {
     name: string,
     description: string,
@@ -8,7 +9,6 @@ export interface Event {
     eventDateTime: Date,
     hostClub: Club,
     category: Category,
-    isFavorite?: boolean
 };
 
 export const Events: Event[] = [
