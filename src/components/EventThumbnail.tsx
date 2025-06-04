@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 
 const EventThumbnail: React.FC<Event> = (event: Event) => {
-    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
     const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {

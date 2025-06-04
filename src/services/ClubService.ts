@@ -156,7 +156,7 @@ export const AIClub: Club = {
 const Clubs: Club[] = [
     {
         name: "Women's Gaming Club",
-        description: "",
+        description: "For female students interested in video games.",
     },
     TennisClub,
     MathClub,

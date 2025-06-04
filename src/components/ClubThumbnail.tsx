@@ -22,7 +22,7 @@ const ClubThumbnail: React.FC<Club> = (club) => {
                 onWillDismiss={_ => closeClub()}>
                 <IonHeader>
                     <IonToolbar>
-                        <IonTitle>Event Details</IonTitle>
+                        <IonTitle>Club Details</IonTitle>
                         <IonButtons slot="end">
                             <IonButton onClick={_ => closeClub()}>Close</IonButton>
                         </IonButtons>
