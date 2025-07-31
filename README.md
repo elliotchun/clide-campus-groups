@@ -1,4 +1,6 @@
-# clide-campus-groups
+# CLIDE: Clubs on Campus
+
+<img width="234" height="507" alt="clide-home" src="https://github.com/user-attachments/assets/73f52d03-c26c-4cdd-85b3-4d7b73c51011" />
 
 ## Installation
 
