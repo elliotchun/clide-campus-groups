@@ -1,4 +1,3 @@
-import { IonButton, IonButtons, IonCard, IonContent, IonHeader, IonImg, IonModal, IonTitle, IonToolbar } from '@ionic/react';
 import './ClubThumbnail.css';
 import { Club } from '../services/ClubService';
 import { useState } from 'react';

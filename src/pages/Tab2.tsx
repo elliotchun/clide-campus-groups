@@ -1,9 +1,9 @@
-import { IonButton, IonContent, IonDatetime, IonDatetimeButton, IonHeader, IonInput, IonModal, IonPage, IonTextarea, IonTitle, IonToast, IonToolbar } from '@ionic/react';
 import './Tab2.css';
 import { FormEvent, FormEventHandler, useState } from 'react';
 import { ACMClub } from '../services/ClubService';
 import Events, { type Event as EEvent } from '../services/EventService';
 import { Category } from '../services/EventCategory';
+import NavigationBar from '../components/NaviationBar';
 
 const Tab2 = () => {
     const [eventData, setEventData] = useState({
@@ -57,72 +57,100 @@ const Tab2 = () => {
     };
 
     return (
-        <IonPage>
-            <IonHeader>
-                <IonToolbar>
-                    <IonTitle>New Event</IonTitle>
-                </IonToolbar>
-            </IonHeader>
-            <IonContent class="ion-padding">
-                <form onSubmit={handleSubmit}>
-                    <IonInput
-                        mode="md"
-                        type="text"
-                        name="eventName"
-                        label="Event name"
-                        labelPlacement="floating"
-                        fill="outline"
-                        placeholder="Name"
-                        value={eventData.name}
-                        onChange={(e) => handleChange(e)}
+        <div className="min-h-screen bg-gray-50">
+            <header className="text-center text-black">
+                <h1 className="text-2xl font-bold py-12">New Event</h1>
+            </header>
+            <main className="text-black max-w-md mx-auto p-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                        <label htmlFor="eventName" className="block text-sm font-medium text-gray-700 mb-1">
+                            Event Name
+                        </label>
+                        <input
+                            type="text"
+                            id="eventName"
+                            name="eventName"
+                            placeholder="Name"
+                            value={eventData.name}
+                            onChange={(e) => handleChange(e)}
+                            disabled={isSubmitting}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                    </div>
+                    
+                    <div>
+                        <label htmlFor="eventDescription" className="block text-sm font-medium text-gray-700 mb-1">
+                            Event Description
+                        </label>
+                        <textarea
+                            id="eventDescription"
+                            name="eventDescription"
+                            placeholder="Description"
+                            value={eventData.description}
+                            onChange={(e) => handleChange(e)}
+                            disabled={isSubmitting}
+                            rows={4}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="eventDateTime" className="block text-sm font-medium text-gray-700 mb-1">
+                            Event Date & Time
+                        </label>
+                        <input
+                            type="datetime-local"
+                            id="eventDateTime"
+                            name="eventDateTime"
+                            value={eventData.eventDateTime ? eventData.eventDateTime.toISOString().slice(0, 16) : ''}
+                            onChange={(e) => handleChange(e)}
+                            disabled={isSubmitting}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            required
+                        />
+                    </div>
+                    
+                    <div>
+                        <label htmlFor="eventLocation" className="block text-sm font-medium text-gray-700 mb-1">
+                            Event Location
+                        </label>
+                        <input
+                            type="text"
+                            id="eventLocation"
+                            name="eventLocation"
+                            placeholder="Location"
+                            value={eventData.location}
+                            onChange={(e) => handleChange(e)}
+                            disabled={isSubmitting}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                    </div>
+                    
+                    <button
+                        type="submit"
                         disabled={isSubmitting}
-                    />
-                    <br />
-                    <IonTextarea
-                        mode="md"
-                        name="eventDescription"
-                        label="Event Description"
-                        labelPlacement="floating"
-                        fill="outline"
-                        placeholder="Description"
-                        value={eventData.description}
-                        onChange={(e) => handleChange(e)}
-                        disabled={isSubmitting}
-                    />
-                    <br />
-                    <IonInput
-                        mode="md"
-                        type="text"
-                        name="eventLocation"
-                        label="Event Location"
-                        labelPlacement="floating"
-                        fill="outline"
-                        placeholder="Location"
-                        value={eventData.location}
-                        onChange={(e) => handleChange(e)}
-                        disabled={isSubmitting}
-                    />
-                    <br />
-                    <IonDatetimeButton
-                        datetime="datetime"
-                        disabled={isSubmitting}
-                    />
-                    <br />
-                    <IonButton type="submit" expand="full" disabled={isSubmitting}>
-                        Submit
-                    </IonButton>
+                        className={`mx-auto w-1/3 py-2 px-4 rounded-md text-white font-medium ${
+                            isSubmitting 
+                                ? 'bg-gray-400 cursor-not-allowed' 
+                                : 'bg-blue-600 hover:bg-blue-700'
+                        }`}
+                    >
+                        {isSubmitting ? 'Submitting...' : 'Submit'}
+                    </button>
                 </form>
-            </IonContent>
-            <IonModal keepContentsMounted={true}>
-                <IonDatetime name="eventDateTime" id="datetime" value={eventData.eventDateTime.toISOString()} onChange={(e) => handleChange(e)}></IonDatetime>
-            </IonModal>
-            <IonToast
-                isOpen={showToast}
-                onDidDismiss={() => setShowToast(false)}
-                message="Event submitted successfully!"
-                duration={2000}
-            />
-        </IonPage>
+            </main>
+            
+            {showToast && (
+                <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg">
+                    Event submitted successfully!
+                </div>
+            )}
+
+            <NavigationBar></NavigationBar>
+        </div>
     );
 };
+
 export default Tab2;
+

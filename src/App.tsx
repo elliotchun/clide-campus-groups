@@ -8,8 +8,8 @@ const App: React.FC = () => (
     <div className="app">
       <Routes>
         <Route path="/tab1" element={<Tab1 />} />
-        {/* <Route path="/tab2" element={<Tab2 />} />
-        <Route path="/tab3" element={<Tab3 />} /> */}
+        <Route path="/tab2" element={<Tab2 />} />
+        {/* <Route path="/tab3" element={<Tab3 />} /> */}
         <Route path="/" element={<Navigate to="/tab1" replace />} />
       </Routes>
     </div>

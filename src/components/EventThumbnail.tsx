@@ -1,6 +1,4 @@
-import { IonCard, IonImg, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonIcon, IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonContent, IonButton } from '@ionic/react';
 import './EventThumbnail.css';
-import { starOutline, star, locationOutline, alarmOutline } from 'ionicons/icons';
 import { eventDateTimeToString, type Event } from '../services/EventService';
 import { useEffect, useState } from 'react';
 
@@ -47,7 +45,7 @@ const EventThumbnail: React.FC<Event> = (event: Event) => {
     }
 
     return (
-        <IonCard className="event-thumbnail" role="article" >
+        <IonCard className="event-thumbnail" role="article">
             <div className="event-thumbnail-horizontal">
                 <IonImg src="Drippy.png" alt={event.name} className="event-thumbnail-image" onClick={_ => openEvent()} />
                 <div onClick={_ => openEvent()}>
