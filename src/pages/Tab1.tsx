@@ -7,7 +7,7 @@ import NavigationBar from '../components/NaviationBar';
 const Tab1: React.FC = () => {
     return (
         <div className="flex flex-col min-h-screen">
-            <header className="bg-blue-500 px-2 py-4">
+            <header className="bg-blue-600 px-2 py-4">
                 <h1 className="ml-6">Welcome CLIDE USER!</h1>
             </header>
             <main className="bg-gray-100 flex-1">
@@ -19,6 +19,7 @@ const Tab1: React.FC = () => {
                     <button id="btn-search-filter">Filter</button>
                 </div>
                 <h1 className="ml-6 text-black text-xl font-bold">Explore New Clubs</h1>
+                <ClubCarousel></ClubCarousel>
                 <h1 className="ml-6 text-black text-xl font-bold">Upcoming Events</h1>
                 <div>
                     <div className="club-list" role="feed"></div>

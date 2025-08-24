@@ -2,42 +2,40 @@ import './ClubThumbnail.css';
 import { Club } from '../services/ClubService';
 import { useState } from 'react';
 
-const ClubThumbnail: React.FC<Club> = (club) => {
-    const [selectedClub, setSelectedClub] = useState<any>(null);
+const ClubThumbnail: React.FC<{ club: Club }> = ({ club }) => {
+    const [selectedClub, setSelectedClub] = useState<Club | null>(null);
+
     const openClub = () => {
         setSelectedClub(club);
     };
 
     const closeClub = () => {
         setSelectedClub(null);
-    }
+    };
+
     return (
-        <>
-            <IonCard className="club-thumbnail" onClick={_ => openClub()}>
-                <IonImg className="club-thumbnail-img" src="Drippy.png" alt={club.name} />
-                <p className="club-thumbnail-name">{club.name}</p>
-            </IonCard>
-            <IonModal isOpen={selectedClub !== null} initialBreakpoint={0.25} breakpoints={[0, 0.25, 1]}
-                onWillDismiss={_ => closeClub()}>
-                <IonHeader>
-                    <IonToolbar>
-                        <IonTitle>Club Details</IonTitle>
-                        <IonButtons slot="end">
-                            <IonButton onClick={_ => closeClub()}>Close</IonButton>
-                        </IonButtons>
-                    </IonToolbar>
-                </IonHeader>
-                <IonContent className="ion-padding">
+        <div className="snap-start">
+            <div className="flex flex-col items-center w-36" onClick={openClub}>
+                <img className="rounded-xl size-36" src="Drippy.png" alt={club.name} />
+                <p className="text-black text-wrap text-center text-sm">{club.name}</p>
+            </div>
                     {selectedClub && (
-                        <>
-                            <h1>{selectedClub.name}</h1>
+                <div className="text-black">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1>Club Details</h1>
+                            <button className="close-button" onClick={closeClub}>×</button>
+                        </div>
+                        <div className="modal-body">
+                            <h2>{selectedClub.name}</h2>
                             <p>{selectedClub.description}</p>
-                        </>
-                    )}
-                </IonContent>
-            </IonModal>
-        </>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
     );
 }
 
 export default ClubThumbnail;
+
