@@ -10,15 +10,16 @@ import { FunnelIcon } from '@heroicons/react/24/outline';
 const Tab1: React.FC = () => {
     return (
         <div className="flex flex-col min-h-screen">
-            <header className="bg-blue-600 px-2 py-4">
-                <h1 className="ml-6">Welcome CLIDE USER!</h1>
+            <header className="bg-blue-600 px-2 py-4 h-32 flex items-center justify-between">
+                <h1 className="ml-6 pt-12 text-2xl font-bold w-fit">Welcome CLIDE USER!</h1>
+                <img className="mr-6 w-16 h-18 self-end" src="Petr.png"></img>
             </header>
             <main className="bg-gray-100 flex-1">
                 <div className="search-bar bg-white m-6 text-black py-2 px-4 rounded-lg border-2 border-gray-300 shadow-md">
                     <button id="btn-search-filter">
                         <MagnifyingGlassIcon className="size-5 text-gray-400"></MagnifyingGlassIcon>
                     </button>
-                    <input className="flex-2" type="text" placeholder="Search events..." />
+                    <input className="flex-2 mx-2" type="text" placeholder="Search events..." />
                     <button id="btn-search-filter">
                         <FunnelIcon className="size-6 text-gray-400 flex-"></FunnelIcon>
                     </button>
