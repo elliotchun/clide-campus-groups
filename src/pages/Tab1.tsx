@@ -2,7 +2,10 @@ import './Tab1.css';
 import EventThumbnail from '../components/EventThumbnail';
 import ClubCarousel from '../components/ClubCarousel';
 import { Category } from '../services/EventCategory';
-import NavigationBar from '../components/NaviationBar';
+import NavigationBar from '../components/NavigationBar';
+import Events from '../services/EventService';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { FunnelIcon } from '@heroicons/react/24/outline';
 
 const Tab1: React.FC = () => {
     return (
@@ -11,18 +14,22 @@ const Tab1: React.FC = () => {
                 <h1 className="ml-6">Welcome CLIDE USER!</h1>
             </header>
             <main className="bg-gray-100 flex-1">
-                <div className="search-bar bg-white m-6 text-black py-2 rounded-lg border-2 border-gray-300">
-                    <button className="px-2" id="btn-search-filter">
-                        Search
+                <div className="search-bar bg-white m-6 text-black py-2 px-4 rounded-lg border-2 border-gray-300 shadow-md">
+                    <button id="btn-search-filter">
+                        <MagnifyingGlassIcon className="size-5 text-gray-400"></MagnifyingGlassIcon>
                     </button>
-                    <input type="text" placeholder="Search events..." />
-                    <button id="btn-search-filter">Filter</button>
+                    <input className="flex-2" type="text" placeholder="Search events..." />
+                    <button id="btn-search-filter">
+                        <FunnelIcon className="size-6 text-gray-400 flex-"></FunnelIcon>
+                    </button>
                 </div>
                 <h1 className="ml-6 text-black text-xl font-bold">Explore New Clubs</h1>
                 <ClubCarousel></ClubCarousel>
-                <h1 className="ml-6 text-black text-xl font-bold">Upcoming Events</h1>
+                <h1 className="ml-6 my-4 text-black text-xl font-bold">Upcoming Events</h1>
                 <div>
-                    <div className="club-list" role="feed"></div>
+                    <div className="club-list m-8" role="feed">
+                        <EventThumbnail event={Events[0]}></EventThumbnail>
+                    </div>
                 </div>
             </main>
             <NavigationBar></NavigationBar>

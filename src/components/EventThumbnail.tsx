@@ -1,12 +1,13 @@
 import './EventThumbnail.css';
 import { eventDateTimeToString, type Event } from '../services/EventService';
 import { useEffect, useState } from 'react';
+import { ClockIcon, MapPinIcon, StarIcon as SolidStarIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { StarIcon as OutlineStarIcon } from '@heroicons/react/24/outline';
 
-
-const EventThumbnail: React.FC<Event> = (event: Event) => {
+const EventThumbnail: React.FC<{event: Event}> = ({event}) => {
     const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
     const [isFavorite, setIsFavorite] = useState(false);
-
+    
     useEffect(() => {
         const storedFavorites = localStorage.getItem('favoriteEvents');
         if (storedFavorites) {
@@ -31,61 +32,72 @@ const EventThumbnail: React.FC<Event> = (event: Event) => {
         }
     };
 
-
     const openEvent = () => {
         setSelectedEvent(event);
     };
 
     const closeEvent = () => {
         setSelectedEvent(null);
-    }
+    };
 
     const getStarIconStyle = () => {
-        return isFavorite ? star : starOutline;
-    }
+        return isFavorite ? (
+            <SolidStarIcon className="size-6 text-yellow-400"></SolidStarIcon>
+        ) : (
+            <OutlineStarIcon className="size-6 text-gray-400"></OutlineStarIcon>
+        );
+    };
 
     return (
-        <IonCard className="event-thumbnail" role="article">
-            <div className="event-thumbnail-horizontal">
-                <IonImg src="Drippy.png" alt={event.name} className="event-thumbnail-image" onClick={_ => openEvent()} />
-                <div onClick={_ => openEvent()}>
-                    <IonCardHeader>
-                        <IonCardTitle>{event.name}</IonCardTitle>
-                    </IonCardHeader>
-                    <IonCardContent>
-                        <IonText color="medium">
-                            <p>{event.description}</p>
-                            <p><IonIcon icon={alarmOutline} /> {eventDateTimeToString(event.eventDateTime)}</p>
-                            <p><IonIcon icon={locationOutline} /> {event.location}</p>
-                        </IonText>
-                    </IonCardContent>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+            <div className="flex flex-row">
+                <div className="w-1/3 flex items-center justify-center">
+                    <img src="Drippy.png" alt={event.name} className="size-full object-cover cursor-pointer" onClick={openEvent} />
                 </div>
-                <IonIcon icon={getStarIconStyle()} className="event-favorite" onClick={_ => addFavorite()} />
+                <div className="w-2/3 p-4 flex flex-col">
+                    <div className="flex justify-between items-start mb-2">
+                        <h2 className="text-xl font-bold text-gray-900 cursor-pointer" onClick={openEvent}>{event.name}</h2>
+                        <button onClick={addFavorite} className="p-1 rounded-full hover:bg-gray-100 transition-colors">
+                            {getStarIconStyle()}
+                        </button>
+                    </div>
+                    <p className="text-gray-600 mb-2">{event.description}</p>
+                    <div className="flex items-center text-sm text-gray-500 mb-1">
+                        <ClockIcon className="size-4 mr-1"></ClockIcon>
+                        <span>{eventDateTimeToString(event.eventDateTime)}</span>
+                    </div>
+                    <div className="flex items-center text-sm text-gray-500">
+                        <MapPinIcon className="size-4 mr-1"></MapPinIcon>
+                        <span>{event.location}</span>
+                    </div>
+                </div>
             </div>
-            <IonModal isOpen={selectedEvent !== null} initialBreakpoint={0.25} breakpoints={[0, 0.25, 0.5, 1]}
-                onWillDismiss={_ => closeEvent()}>
-                <IonHeader>
-                    <IonToolbar>
-                        <IonTitle>Event Details</IonTitle>
-                        <IonButtons slot="end">
-                            <IonButton onClick={_ => closeEvent()}>Close</IonButton>
-                        </IonButtons>
-                    </IonToolbar>
-                </IonHeader>
-                <IonContent className="ion-padding">
-                    {selectedEvent && (
-                        <>
-                            <h1>{selectedEvent.name}</h1>
-                            <p>{selectedEvent.description}</p>
-                            <p><IonIcon icon={alarmOutline} /> {eventDateTimeToString(event.eventDateTime)}</p>
-                            <p><IonIcon icon={locationOutline} /> {selectedEvent.location}</p>
-                        </>
-                    )}
-                </IonContent>
-            </IonModal>
-        </IonCard>
+            
+            {selectedEvent && (
+                <div className="fixed inset-0 backdrop-brightness-50 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
+                        <div className="p-6">
+                            <div className="flex justify-between items-center mb-4">
+                                <h1 className="text-2xl font-bold text-gray-900">{selectedEvent.name}</h1>
+                                <button onClick={closeEvent} className="text-gray-500 rounded-full hover:text-gray-700 hover:bg-gray-100">
+                                    <XMarkIcon className="size-6"></XMarkIcon>
+                                </button>
+                            </div>
+                            <p className="text-gray-700 mb-4">{selectedEvent.description}</p>
+                            <div className="flex items-center text-sm text-gray-500 mb-2">
+                                <ClockIcon className="size-4 mr-1"></ClockIcon>
+                                <span>{eventDateTimeToString(event.eventDateTime)}</span>
+                            </div>
+                            <div className="flex items-center text-sm text-gray-500">
+                                <MapPinIcon className="size-4 mr-1"></MapPinIcon>
+                                <span>{selectedEvent.location}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
     );
-
-}
+};
 
 export default EventThumbnail;

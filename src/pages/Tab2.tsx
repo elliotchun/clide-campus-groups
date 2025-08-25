@@ -3,7 +3,7 @@ import { FormEvent, FormEventHandler, useState } from 'react';
 import { ACMClub } from '../services/ClubService';
 import Events, { type Event as EEvent } from '../services/EventService';
 import { Category } from '../services/EventCategory';
-import NavigationBar from '../components/NaviationBar';
+import NavigationBar from '../components/NavigationBar';
 
 const Tab2 = () => {
     const [eventData, setEventData] = useState({
@@ -130,7 +130,7 @@ const Tab2 = () => {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className={`mx-auto w-1/3 py-2 px-4 rounded-md text-white font-medium ${
+                        className={`w-full py-2 px-4 rounded-md text-white font-medium ${
                             isSubmitting 
                                 ? 'bg-gray-400 cursor-not-allowed' 
                                 : 'bg-blue-600 hover:bg-blue-700'

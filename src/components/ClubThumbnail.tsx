@@ -14,12 +14,12 @@ const ClubThumbnail: React.FC<{ club: Club }> = ({ club }) => {
     };
 
     return (
-        <div className="snap-start">
-            <div className="flex flex-col items-center w-36" onClick={openClub}>
-                <img className="rounded-xl size-36" src="Drippy.png" alt={club.name} />
-                <p className="text-black text-wrap text-center text-sm">{club.name}</p>
+        <div className="snap-start flex flex-col items-center w-36">
+            <div className="" onClick={openClub}>
+                <img className="rounded-xl size-36 shadow-md" src="Drippy.png" alt={club.name} />
+                <p className="text-black text-wrap text-center mt-2 text-sm font-semibold">{club.name}</p>
             </div>
-                    {selectedClub && (
+                {selectedClub && (
                 <div className="text-black">
                     <div className="modal-content">
                         <div className="modal-header">
