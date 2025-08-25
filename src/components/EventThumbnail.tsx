@@ -49,10 +49,10 @@ const EventThumbnail: React.FC<{event: Event}> = ({event}) => {
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+        <div className="bg-white rounded-lg shadow-md overflow-hidden my-2 border border-gray-200">
             <div className="flex flex-row">
                 <div className="w-1/3 flex items-center justify-center">
-                    <img src="Drippy.png" alt={event.name} className="size-full object-cover cursor-pointer" onClick={openEvent} />
+                    <img src={event.image} alt={event.name} className="size-full object-cover cursor-pointer" onClick={openEvent} />
                 </div>
                 <div className="w-2/3 p-4 flex flex-col">
                     <div className="flex justify-between items-start mb-2">

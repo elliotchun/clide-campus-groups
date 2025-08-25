@@ -28,8 +28,10 @@ const Tab1: React.FC = () => {
                 <ClubCarousel></ClubCarousel>
                 <h1 className="ml-6 my-4 text-black text-xl font-bold">Upcoming Events</h1>
                 <div>
-                    <div className="club-list m-8" role="feed">
-                        <EventThumbnail event={Events[0]}></EventThumbnail>
+                    <div className="club-list m-4" role="feed">
+                        {Events.map((item, index) => (
+                            <EventThumbnail event={item}></EventThumbnail>
+                        ))}
                     </div>
                 </div>
             </main>

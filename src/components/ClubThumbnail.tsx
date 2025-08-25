@@ -14,9 +14,9 @@ const ClubThumbnail: React.FC<{ club: Club }> = ({ club }) => {
     };
 
     return (
-        <div className="snap-start flex flex-col items-center w-36">
-            <div className="" onClick={openClub}>
-                <img className="rounded-xl size-36 shadow-md" src="Drippy.png" alt={club.name} />
+        <div className="snap-start w-36">
+            <div className="flex flex-col items-center justify-center" onClick={openClub}>
+                <img className="rounded-xl size-36 shadow-md" src={club.image} alt={club.name} />
                 <p className="text-black text-wrap text-center mt-2 text-sm font-semibold">{club.name}</p>
             </div>
                 {selectedClub && (

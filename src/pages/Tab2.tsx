@@ -1,6 +1,5 @@
 import './Tab2.css';
 import { FormEvent, FormEventHandler, useState } from 'react';
-import { ACMClub } from '../services/ClubService';
 import Events, { type Event as EEvent } from '../services/EventService';
 import { Category } from '../services/EventCategory';
 import NavigationBar from '../components/NavigationBar';
@@ -11,7 +10,11 @@ const Tab2 = () => {
         description: '',
         location: '',
         eventDateTime: new Date(),
-        hostClub: ACMClub,
+        hostClub: {
+            name: "",
+            description: "",
+            image: "Drippy.png"
+        },
         category: Category.Social
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
