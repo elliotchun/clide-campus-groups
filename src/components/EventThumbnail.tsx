@@ -57,7 +57,7 @@ const EventThumbnail: React.FC<{event: Event}> = ({event}) => {
                 <div className="w-2/3 p-4 flex flex-col">
                     <div className="flex justify-between items-start mb-2">
                         <h2 className="text-xl font-bold text-gray-900 cursor-pointer" onClick={openEvent}>{event.name}</h2>
-                        <button onClick={addFavorite} className="p-1 rounded-full hover:bg-gray-100 transition-colors">
+                        <button onClick={addFavorite} className="p-1 rounded-full hover:bg-gray-100 cursor-pointer">
                             {getStarIconStyle()}
                         </button>
                     </div>
