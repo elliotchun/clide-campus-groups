@@ -3,6 +3,7 @@ import { eventDateTimeToString, type Event } from '../services/EventService';
 import { useEffect, useState } from 'react';
 import { ClockIcon, MapPinIcon, StarIcon as SolidStarIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { StarIcon as OutlineStarIcon } from '@heroicons/react/24/outline';
+import ModalDialog from '../components/ModelDialog'
 
 const EventThumbnail: React.FC<{event: Event}> = ({event}) => {
     const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
@@ -74,27 +75,23 @@ const EventThumbnail: React.FC<{event: Event}> = ({event}) => {
             </div>
             
             {selectedEvent && (
-                <div className="fixed inset-0 backdrop-brightness-50 flex items-center justify-center z-50 p-4">
-                    <div className="bg-white rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
-                        <div className="p-6">
-                            <div className="flex justify-between items-center mb-4">
-                                <h1 className="text-2xl font-bold text-gray-900">{selectedEvent.name}</h1>
-                                <button onClick={closeEvent} className="text-gray-500 rounded-full hover:text-gray-700 hover:bg-gray-100">
-                                    <XMarkIcon className="size-6"></XMarkIcon>
-                                </button>
-                            </div>
-                            <p className="text-gray-700 mb-4">{selectedEvent.description}</p>
-                            <div className="flex items-center text-sm text-gray-500 mb-2">
-                                <ClockIcon className="size-4 mr-1"></ClockIcon>
-                                <span>{eventDateTimeToString(event.eventDateTime)}</span>
-                            </div>
-                            <div className="flex items-center text-sm text-gray-500">
-                                <MapPinIcon className="size-4 mr-1"></MapPinIcon>
-                                <span>{selectedEvent.location}</span>
-                            </div>
-                        </div>
+                <ModalDialog>
+                    <div className="flex justify-between items-center mb-4">
+                        <h1 className="text-2xl font-bold text-gray-900">{selectedEvent.name}</h1>
+                        <button onClick={closeEvent} className="text-gray-500 rounded-full hover:text-gray-700 hover:bg-gray-100">
+                            <XMarkIcon className="size-6"></XMarkIcon>
+                        </button>
                     </div>
-                </div>
+                    <p className="text-gray-700 mb-4">{selectedEvent.description}</p>
+                    <div className="flex items-center text-sm text-gray-500 mb-2">
+                        <ClockIcon className="size-4 mr-1"></ClockIcon>
+                        <span>{eventDateTimeToString(event.eventDateTime)}</span>
+                    </div>
+                    <div className="flex items-center text-sm text-gray-500">
+                        <MapPinIcon className="size-4 mr-1"></MapPinIcon>
+                        <span>{selectedEvent.location}</span>
+                    </div>
+                </ModalDialog>
             )}
         </div>
     );

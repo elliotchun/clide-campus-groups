@@ -6,8 +6,20 @@ import NavigationBar from '../components/NavigationBar';
 import Events from '../services/EventService';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { FunnelIcon } from '@heroicons/react/24/outline';
+import ModalDialog from '../components/ModelDialog';
+import { useState } from 'react';
 
 const Tab1: React.FC = () => {
+    const [isFilterModalActive, setFilterModalState] = useState<boolean>(false);
+
+    const showFilterModal = () => {
+        setFilterModalState(true);
+    };
+
+    const hideFilterModal = () => {
+        setFilterModalState(false);
+    };
+
     return (
         <div className="flex flex-col min-h-screen">
             <header className="bg-blue-600 px-2 py-4 h-32 flex items-center justify-between">
@@ -20,7 +32,7 @@ const Tab1: React.FC = () => {
                         <MagnifyingGlassIcon className="size-5 text-gray-400"></MagnifyingGlassIcon>
                     </button>
                     <input className="flex-2 mx-2" type="text" placeholder="Search events..." />
-                    <button id="btn-search-filter">
+                    <button id="btn-search-filter" className="cursor-pointer hover:bg-gray-100 rounded-full p-1" onClick={showFilterModal}>
                         <FunnelIcon className="size-6 text-gray-400 flex-"></FunnelIcon>
                     </button>
                 </div>
@@ -36,27 +48,42 @@ const Tab1: React.FC = () => {
                 </div>
             </main>
             <NavigationBar></NavigationBar>
-            <dialog id="filter-modal" className="bg-white rounded-xl text-black">
-                <header>
-                    <h2 className="text-lg mt-10 ml-3">Filter Events</h2>
-                </header>
-                <main className="ml-3">
-                    <h3 className="my-1">Category</h3>
-                    {Object.values(Category).filter(key => !(Number(key) >= 0)).map((key) => (
-                        <div key={key}>
-                            <input className="bg-white border-gray-300"
-                                type="checkbox"
-                                id={`category-${key}`}
+            {isFilterModalActive && (
+                <ModalDialog>
+                    <div className="text-black">
+                        <header>
+                            <h2 className="text-lg ml-3">Filter Events</h2>
+                        </header>
+                        <main className="m-3">
+                            <label htmlFor="eventDate" className="block text-sm font-medium mb-1">
+                                Event Date
+                            </label>
+                            <input
+                                type="date"
+                                id="eventDate"
+                                name="eventDate"
+                                value=''
+                                onChange={() => {}}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
-                            <label className="text-sm ml-1" htmlFor={`category-${key}`}>{key}</label>
-                        </div>
-                    ))}
-                </main>
-                <footer>
-                    <button>Cancel</button>
-                    <button>Submit</button>
-                </footer>
-            </dialog>
+                            <h3 className="my-1 text-sm font-medium">Category</h3>
+                            {Object.values(Category).filter(key => !(Number(key) >= 0)).map((key) => (
+                                <div key={key} className="flex flex-row my-2">
+                                    <input className="size-5"
+                                        type="checkbox"
+                                        id={`category-${key}`}
+                                    />
+                                    <label className="text-sm ml-2" htmlFor={`category-${key}`}>{key}</label>
+                                </div>
+                            ))}
+                        </main>
+                        <footer className="flex justify-end space-x-2 mt-4">
+                            <button onClick={hideFilterModal} className="px-4 py-2 bg-gray-300 rounded-md cursor-pointer">Cancel</button>
+                            <button onClick={hideFilterModal} className="px-4 py-2 bg-blue-600 text-white rounded-md cursor-pointer">Submit</button>
+                        </footer>
+                    </div>
+                </ModalDialog>
+            )}
         </div>
     );
 };
