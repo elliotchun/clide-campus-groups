@@ -5,10 +5,10 @@ import { ClockIcon, MapPinIcon, StarIcon as SolidStarIcon, XMarkIcon } from '@he
 import { StarIcon as OutlineStarIcon } from '@heroicons/react/24/outline';
 import ModalDialog from '../components/ModelDialog'
 
-const EventThumbnail: React.FC<{event: Event}> = ({event}) => {
+const EventThumbnail: React.FC<{ event: Event }> = ({ event }) => {
     const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
     const [isFavorite, setIsFavorite] = useState(false);
-    
+
     useEffect(() => {
         const storedFavorites = localStorage.getItem('favoriteEvents');
         if (storedFavorites) {
@@ -50,7 +50,7 @@ const EventThumbnail: React.FC<{event: Event}> = ({event}) => {
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-md overflow-hidden my-2 border border-gray-200">
+        <div className="bg-white rounded-lg shadow-md overflow-hidden my-2 border border-gray-200 lg:w-5xl">
             <div className="flex flex-row">
                 <div className="w-1/3 flex items-center justify-center">
                     <img src={event.image} alt={event.name} className="size-full object-cover cursor-pointer" onClick={openEvent} />
@@ -73,7 +73,7 @@ const EventThumbnail: React.FC<{event: Event}> = ({event}) => {
                     </div>
                 </div>
             </div>
-            
+
             {selectedEvent && (
                 <ModalDialog>
                     <div className="flex justify-between items-center mb-4">
