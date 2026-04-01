@@ -25,7 +25,5 @@ npm i
 Application can be hosted locally using 
 
 ```
-ionic serve
+vite
 ```
-
-Note that ionic-cli must be installed on your system.
